@@ -1,17 +1,17 @@
 import { injectable } from "inversify";
 import * as pg from "pg";
 import "reflect-metadata";
+import { Room } from "../../../common/tables/Room";
 import {schema} from "../createSchema";
 import {data} from "../populateDB";
-import { Room } from "../../../common/tables/Room";
 
 @injectable()
 export class DatabaseService {
 
     // A MODIFIER POUR VOTRE BD
     public connectionConfig: pg.ConnectionConfig = {
-        user: "dieu",
-        database: "VSF",
+        user: "sysadmin",
+        database: "vetosansfrontieres",
         password: "password",
         port: 5432,
         host: "127.0.0.1",
@@ -25,36 +25,49 @@ export class DatabaseService {
         METHODES DE DEBUG
     */
     public createSchema(): Promise<pg.QueryResult> {
-        this.pool.connect();
-        
+        //this.pool.connect();
+
+        console.log(this.pool.query(schema));
         return this.pool.query(schema);
     }
 
     public populateDb(): Promise<pg.QueryResult> {
-        this.pool.connect();
+        //this.pool.connect();
 
         return this.pool.query(data);
     }
-
+/*
     public getAllFromTable(tableName: string): Promise<pg.QueryResult> {
-        this.pool.connect();
+        //this.pool.connect();
 
         return this.pool.query(`SELECT * FROM HOTELDB.${tableName};`);
     }
 
     // HOTEL
     public getHotels(): Promise<pg.QueryResult> {
-        this.pool.connect();
+        //this.pool.connect();
 
         return this.pool.query('SELECT * FROM HOTELDB.Hotel;');
     }
 
     public getHotelNo(): Promise<pg.QueryResult> {
-        this.pool.connect();
+        //this.pool.connect();
 
         return this.pool.query('SELECT hotelNo FROM HOTELDB.Hotel;');
     }
 
+    public createHotel(hotelNo: string, hotelName: string, city: string): Promise<pg.QueryResult> {
+        //this.pool.connect();
+        const values: string[] = [
+            hotelNo,
+            hotelName,
+            city
+        ];
+        const queryText: string = `INSERT INTO HOTELDB.Hotel VALUES($1, $2, $3);`;
+
+        return this.pool.query(queryText, values);
+    }
+*/
     public createAnimal(animId: string, nom: string, etat: string, espece: string, descr: string,
         dateNaissance: string, dateIns: string, propId: string, cliniqueId: string): Promise<pg.QueryResult> {
         this.pool.connect();
@@ -74,10 +87,10 @@ export class DatabaseService {
 
         return this.pool.query(queryText, values);
     }
-
+/*
     // ROOM
     public getRoomFromHotel(hotelNo: string, roomType: string, price: number): Promise<pg.QueryResult> {
-        this.pool.connect();
+        //this.pool.connect();
 
         let query: string =
         `SELECT * FROM HOTELDB.room
@@ -96,7 +109,7 @@ export class DatabaseService {
     }
 
     public getRoomFromHotelParams(params: object): Promise<pg.QueryResult> {
-        this.pool.connect();
+        //this.pool.connect();
 
         let query: string = 'SELECT * FROM HOTELDB.room \n';
         const keys: string[] = Object.keys(params);
@@ -123,7 +136,7 @@ export class DatabaseService {
     }
 
     public createRoom(room: Room): Promise<pg.QueryResult> {
-        this.pool.connect();
+        //this.pool.connect();
         const values: string[] = [
             room.roomno,
             room.hotelno,
@@ -141,7 +154,7 @@ export class DatabaseService {
                        guestName: string,
                        gender: string,
                        guestCity: string): Promise<pg.QueryResult> {
-        this.pool.connect();
+        //this.pool.connect();
         const values: string[] = [
             guestNo,
             nas,
@@ -160,7 +173,7 @@ export class DatabaseService {
                          dateFrom: Date,
                          dateTo: Date,
                          roomNo: string): Promise<pg.QueryResult> {
-        this.pool.connect();
+        //this.pool.connect();
         const values: string[] = [
             hotelNo,
             guestNo,
@@ -171,5 +184,17 @@ export class DatabaseService {
         const queryText: string = `INSERT INTO HOTELDB.ROOM VALUES($1,$2,$3,$4,$5);`;
 
         return this.pool.query(queryText, values);
-        }
+    }
+    */
+    // treatment of an animal
+    public getTreatment(animalId: string, ownerId: string, clinicId: string): Promise<pg.QueryResult> {
+        const queryText: string = 'SELECT * FROM VSF.Traitement INNER JOIN VSF.Animal USING(animId, propId, cliniqueId) WHERE animId = $1' +
+                                  'AND propId = $2 AND cliniqueId = $3;';
+        const values: string[] = [
+            animalId,
+            ownerId,
+            clinicId
+        ];
+        return this.pool.query(queryText, values);
+    }
 }
