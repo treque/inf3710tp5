@@ -2,6 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { of, Observable } from "rxjs";
 import { catchError } from "rxjs/operators";
+import { Treatment } from "../../../../common/tables/treatment";
 
 @Injectable({
   providedIn: "root"
@@ -12,9 +13,9 @@ export class TreatmentService {
 
   public constructor(private http: HttpClient) { }
 
-  public getTreatment(animalId: string, ownerId: string, clinicId: string): Observable<string[]> {
-    return this.http.post<string[]>(this.BASE_URL + "/treatment", {animId: animalId, ownerId: ownerId, clinicId: clinicId}).pipe(
-        catchError(this.handleError<string[]>("getHotelPKs")),
+  public getTreatments(animalId: string, ownerId: string, clinicId: string): Observable<Treatment[]> {
+    return this.http.post<Treatment[]>(this.BASE_URL + "/treatment", {animId: animalId, ownerId: ownerId, clinicId: clinicId}).pipe(
+        catchError(this.handleError<Treatment[]>("")),
     );
   }
 

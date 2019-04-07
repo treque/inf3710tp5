@@ -1,4 +1,5 @@
 import { Component, OnInit } from "@angular/core";
+import { Treatment } from "../../../../common/tables/treatment";
 import { TreatmentService } from "../services/treatment.service";
 
 @Component({
@@ -8,15 +9,20 @@ import { TreatmentService } from "../services/treatment.service";
 })
 export class TreatmentComponent implements OnInit {
 
-  public constructor(private treatmentService: TreatmentService) { }
+  private treatments: Treatment[];
+
+  public constructor(private treatmentService: TreatmentService) {
+    this.treatments = [];
+  }
 
   public ngOnInit(): void {
     // todo
   }
 
-  public getTreatment(animalId: string, ownerId: string, clinicId: string): void {
-    this.treatmentService.getTreatment(animalId, ownerId, clinicId).toPromise().then((res: string[]) => {
+  public getTreatments(animalId: string, ownerId: string, clinicId: string): void {
+    this.treatmentService.getTreatments(animalId, ownerId, clinicId).toPromise().then((res: Treatment[]) => {
       console.log(res);
+      this.treatments = res;
     });
   }
 }
