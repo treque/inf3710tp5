@@ -28,7 +28,7 @@ export class TreatmentComponent implements OnInit {
       console.log(res);
       //this._treatments = res;
 
-      for(const treatment of res){
+      for (const treatment of res) {
         this._treatments.push({typeid: treatment.typeid,
                                qte: treatment.qte,
                                datedebut: new Date(treatment.datedebut).toLocaleDateString(),

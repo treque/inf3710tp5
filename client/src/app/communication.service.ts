@@ -2,7 +2,7 @@ import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import {Hotel} from "../../../common/tables/Hotel";
 // tslint:disable-next-line:ordered-imports
-import { of, Observable,concat, Subject, fromEventPattern } from "rxjs";
+import { of, Observable, concat, Subject } from "rxjs";
 import { catchError } from "rxjs/operators";
 import { Room } from "../../../common/tables/Room";
 import { Animal } from "../../../common/tables/Animal";
