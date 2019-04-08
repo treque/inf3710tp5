@@ -12,9 +12,19 @@
       </ul>
 </div>
     
-<div id='treatment-list'>
-    <li *ngFor="let treatment of treatments">
-        {{treatment.typeid}}
-    </li>
-</div>
-  
+<table id ="ht" align="center" border="1" width="350">
+    <thead>
+        <th> Type de traitement</th>
+        <th> Qté</th>
+        <th> Date de début</th>
+        <th> Date de fin</th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let treatment of _treatments">
+                <td> {{treatment.typeid}}</td>
+                <td> {{treatment.qte}}</td>
+                <td> {{treatment.datedebut}}</td>
+                <td> {{treatment.datefin}}</td>
+        </tr>
+    </tbody>
+</table>

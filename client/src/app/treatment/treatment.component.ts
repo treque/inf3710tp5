@@ -9,10 +9,14 @@ import { TreatmentService } from "../services/treatment.service";
 })
 export class TreatmentComponent implements OnInit {
 
-  private treatments: Treatment[];
+  private _treatments: Treatment[];
+
+  public get treatment(): Treatment[] {
+    return this._treatments;
+  }
 
   public constructor(private treatmentService: TreatmentService) {
-    this.treatments = [];
+    this._treatments = [];
   }
 
   public ngOnInit(): void {
@@ -22,7 +26,17 @@ export class TreatmentComponent implements OnInit {
   public getTreatments(animalId: string, ownerId: string, clinicId: string): void {
     this.treatmentService.getTreatments(animalId, ownerId, clinicId).toPromise().then((res: Treatment[]) => {
       console.log(res);
-      this.treatments = res;
+      //this._treatments = res;
+
+      for(const treatment of res){
+        this._treatments.push({typeid: treatment.typeid,
+                               qte: treatment.qte,
+                               datedebut: new Date(treatment.datedebut).toLocaleDateString(),
+                               datefin: new Date(treatment.datefin).toLocaleDateString()
+                              });
+      }
+
+      //console.log(this._treatments[0].datefin.toLocaleDateString());
     });
   }
 }

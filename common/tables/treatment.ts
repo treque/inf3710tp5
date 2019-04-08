@@ -1,4 +1,4 @@
-export interface Treatment {
+/*export interface Treatment {
     "traitId": string;
     "examId": string;
     "animId": string;
@@ -8,4 +8,11 @@ export interface Treatment {
     "qte": string;
     "dateDebut": string;
     "dateFin": string;
+}*/
+
+export interface Treatment {
+    typeid: string;
+    qte: string;
+    datedebut: string;
+    datefin: string;
 }
