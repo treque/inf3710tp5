@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { CommunicationService } from "./../communication.service";
+import { Component } from "@angular/core";
 import { Animal } from "../../../../common/tables/Animal";
+import { CommunicationService } from "./../communication.service";
 @Component({
-  selector: 'app-animal',
-  templateUrl: './animal.component.html',
-  styleUrls: ['./animal.component.css']
+  selector: "app-animal",
+  templateUrl: "./animal.component.html",
+  styleUrls: ["./animal.component.css"]
 })
 export class AnimalComponent {
 
@@ -12,7 +12,15 @@ export class AnimalComponent {
 
   public duplicateError: boolean = false;
 
-  public insertAnimal(animId: string, nom: string, etat: string, espece: string, descr: string, dateNaissance: string, dateIns: string, propId: string, cliniqueId: string): void {
+  public insertAnimal(animId: string,
+                      nom: string,
+                      etat: string,
+                      espece: string,
+                      descr: string,
+                      dateNaissance: string,
+                      dateIns: string,
+                      propId: string,
+                      cliniqueId: string): void {
     const animal: Animal = {
       "animId": animId,
       "nom": nom,

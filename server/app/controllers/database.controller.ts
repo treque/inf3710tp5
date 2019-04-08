@@ -2,8 +2,8 @@ import { NextFunction, Request, Response, Router } from "express";
 import { inject, injectable } from "inversify";
 import * as pg from "pg";
 
-import {Hotel} from "../../../common/tables/Hotel";
-import {Room} from '../../../common/tables/Room';
+//import {Hotel} from "../../../common/tables/Hotel";
+//import {Room} from '../../../common/tables/Room';
 
 import { DatabaseService } from "../services/database.service";
 import Types from "../types";
@@ -34,7 +34,7 @@ export class DatabaseController {
                         console.error(e.stack);
                     });
         });
-
+/*
         router.get("/hotel",
                    (req: Request, res: Response, next: NextFunction) => {
                     // Send the request to the service and send the response
@@ -60,7 +60,7 @@ export class DatabaseController {
                         console.error(e.stack);
                     });
                   });
-
+*/
         router.post("/animal/insert",
                     (req: Request, res: Response, next: NextFunction) => {
                         const animId: string = req.body.animId;
@@ -80,7 +80,7 @@ export class DatabaseController {
                         res.json(-1);
                     });
         });
-
+/*
         router.get("/rooms",
                    (req: Request, res: Response, next: NextFunction) => {
 
@@ -127,7 +127,18 @@ export class DatabaseController {
                     }).catch((e: Error) => {
                         console.error(e.stack);
                     });
+        });
+        */
+        // partie vsf
+        router.post("/treatment", (req: Request, res: Response, next: NextFunction) => {
+            console.log(req.body);
+            this.databaseService.getTreatment(req.body.animId, req.body.ownerId, req.body.clinicId)
+            .then((result: pg.QueryResult) => {
+                res.json(result.rows);
+            }).catch((e: Error) => {
+                console.error(e.stack);
             });
+        });
 
         return router;
     }
