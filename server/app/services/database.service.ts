@@ -188,14 +188,17 @@ export class DatabaseService {
     }
     */
     // treatment of an animal
-    public getTreatment(animalId: string, ownerId: string, clinicId: string): Promise<pg.QueryResult> {
-        const queryText: string = `SELECT typeId, qte, dateDebut, dateFin FROM VSF.Traitement INNER JOIN VSF.Animal USING(animId, propId, cliniqueId) WHERE animId = $1` +
+    public getTreatmentsById(animalId: string, ownerId: string, clinicId: string): Promise<pg.QueryResult> {
+        const queryText: string = `SELECT typeId, qte, dateDebut, dateFin, VSF.TypeTraitement.descr,` +
+                                  `cout FROM VSF.Traitement INNER JOIN VSF.TypeTraitement USING(typeId)` +
+                                  `INNER JOIN VSF.Animal USING(animId, propId, cliniqueId) WHERE animId = $1` +
                                   'AND propId = $2 AND cliniqueId = $3;';
         const values: string[] = [
             animalId,
             ownerId,
             clinicId
         ];
+
         return this.pool.query(queryText, values);
     }
 }

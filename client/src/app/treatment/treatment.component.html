@@ -18,6 +18,8 @@
         <th> Qté</th>
         <th> Date de début</th>
         <th> Date de fin</th>
+        <th> Description </th>
+
     </thead>
     <tbody>
         <tr *ngFor="let treatment of _treatments">
@@ -25,6 +27,8 @@
                 <td> {{treatment.qte}}</td>
                 <td> {{treatment.datedebut}}</td>
                 <td> {{treatment.datefin}}</td>
+                <td> {{treatment.descr}}</td>
+
         </tr>
     </tbody>
 </table>
