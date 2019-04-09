@@ -12,6 +12,7 @@ import { HotelComponent } from "./hotel/hotel.component";
 import { RoomComponent } from "./room/room.component";
 import { SearchAnimalComponent } from "./search-animal/search-animal.component";
 import { TreatmentComponent } from "./treatment/treatment.component";
+import { PaymentComponent } from './payment/payment.component';
 
 @NgModule({
   declarations: [
@@ -22,6 +23,7 @@ import { TreatmentComponent } from "./treatment/treatment.component";
     TreatmentComponent,
     SearchAnimalComponent,
     AnimalUpdaterComponent,
+    PaymentComponent,
   ],
   imports: [
     CommonModule,
