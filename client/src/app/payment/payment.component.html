@@ -1,5 +1,15 @@
-<div (click)="getBill('A1', 'P3', 'C1')"> AAAAAAAA </div>
-
+<div id="traitement" style="text-align: left">
+        <h1> Facture totale d'un animal </h1>
+        <div id="error" class="alert alert-danger" role="alert" *ngIf="duplicateError">
+          NOPE
+        </div>
+        <ul style="list-style: none;">
+            ID de l'animal : <li><input class="form-control col-md-4" #animId></li>
+            ID du propriétaire : <li><input class="form-control col-md-4" #propId></li>
+            ID de la clinique : <li><input  class="form-control col-md-4" #clinicId></li>
+          <li><button type="button" class="btn btn-primary" (click)="getBill(animId.value,propId.value, clinicId.value)"> Recherche </button></li>
+        </ul>
+</div>
     
 <table id ="ht" align="center" border="1" width="575">
     <thead>
