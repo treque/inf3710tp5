@@ -139,6 +139,16 @@ export class DatabaseController {
             });
         });
 
+        router.post("/animal/search", (req: Request, res: Response, next: NextFunction) => {
+            console.log(req.body[0]);
+            this.databaseService.getAnimalsByName(req.body[0])
+            .then((result: pg.QueryResult) => {
+                res.json(result.rows);
+            }).catch((e: Error) => {
+                console.error(e.stack);
+            });
+        });
+
         return router;
     }
 }
