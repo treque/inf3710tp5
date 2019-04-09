@@ -1,37 +1,46 @@
 import { Component } from "@angular/core";
 import { Animal } from "../../../../common/tables/Animal";
-import { CommunicationService } from "./../communication.service";
+import { CommunicationService } from "../communication.service";
+
 @Component({
-  selector: "app-animal",
-  templateUrl: "./animal.component.html",
-  styleUrls: ["./animal.component.css"]
+  selector: "app-animal-inserter",
+  templateUrl: "./animal-inserter.component.html",
+  styleUrls: ["./animal-inserter.component.css"]
 })
-export class AnimalComponent {
+export class AnimalInserterComponent {
 
   public constructor(private communicationService: CommunicationService) { }
 
   public duplicateError: boolean = false;
 
+  private getCurrentFormattedDate(): string {
+    let today = new Date();
+    const day = String(today.getDate()).padStart(2, '0');
+    const month = String(today.getMonth() + 1).padStart(2, '0');
+    const year = today.getFullYear();
+
+    return year + '-' + month + '-' + day;
+  }
   public insertAnimal(animId: string,
                       nom: string,
                       etat: string,
                       espece: string,
                       descr: string,
                       dateNaissance: string,
-                      dateIns: string,
                       propId: string,
                       cliniqueId: string): void {
     const animal: Animal = {
-      "animId": animId,
+      "animid": animId,
       "nom": nom,
-      "etat": espece,
+      "etat": etat,
       "espece": espece,
       "descr": descr,
-      "dateNaissance": dateNaissance,
-      "dateIns": new Date().toLocaleDateString(),
-      "propId": propId,
-      "cliniqueId": cliniqueId,
+      "datenaissance": dateNaissance,
+      "dateins": this.getCurrentFormattedDate(),
+      "propid": propId,
+      "cliniqueid": cliniqueId,
     };
+    console.log(animal);
     this.communicationService.insertAnimal(animal).subscribe((res: number) => {
         if (res > 0) {
             this.communicationService.filter("update");

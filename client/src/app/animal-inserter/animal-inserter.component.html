@@ -1,0 +1,21 @@
+<div id="hotel" style="text-align: left">
+    <h1> Animals</h1>
+    <div id="error" class="alert alert-danger" role="alert" *ngIf="duplicateError">
+      Insertion sur une cle primaire qui existe deja
+    </div>
+      <ul style="list-style: none;">
+        animal id : <li><input class="form-control col-md-4" #animId></li>
+        proprietaire id: <li><input class="form-control col-md-4" #propId></li>
+        clinique id: <li><input class="form-control col-md-4" #cliniqueId></li>
+        nom : <li><input class="form-control col-md-4" #nom></li>
+        espece : <li><input class="form-control col-md-4" #espece></li>
+        etat : <li><select id="inputState" class="form-control col-md-4" #etat>
+          <option selected>Choisir...</option>
+          <option>VIVANT</option>
+          <option>DECEDE</option>
+        </select></li>
+        description : <li><input class="form-control col-md-4" #desc></li>
+        date de naissance (YYYY-MM-DD) : <li><input class="form-control col-md-4" type="text" id="datepicker" #ddn></li>
+      <li><button type="button" class="btn btn-primary" (click)="insertAnimal(animId.value, nom.value, etat.value, espece.value, desc.value, ddn.value, propId.value, cliniqueId.value)"> Ajouter un animal</button></li>
+    </ul>
+    </div>
