@@ -264,7 +264,7 @@ export class DatabaseService {
     }
 
     public getAnimalsByName(name: string): Promise<pg.QueryResult> {
-        const queryText: string = `SELECT * FROM VSF.Animal WHERE lower(nom) LIKE $1;`;
+        const queryText: string = `SELECT * FROM VSF.Animal WHERE lower(nom) LIKE lower($1);`;
 
         return this.pool.query(queryText, ['%' + name + '%']);
     }

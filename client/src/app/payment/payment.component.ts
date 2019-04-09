@@ -10,8 +10,8 @@ import { PaymentService } from "../services/payment.service";
 })
 export class PaymentComponent {
 
-  private _treatments: Treatment[];
-  private _total: number;
+  public _treatments: Treatment[];
+  public _total: number;
 
   public constructor(private paymentService: PaymentService) {
     this._treatments = [];
