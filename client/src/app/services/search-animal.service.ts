@@ -13,7 +13,7 @@ export class SearchAnimalService {
   public constructor(private http: HttpClient) { }
 
   public searchAnimal(name: string): Observable<Animal[]> {
-    return this.http.post<Animal[]>(this.BASE_URL + "/animal/search", name).pipe(
+    return this.http.post<Animal[]>(this.BASE_URL + "/animal/search", [name]).pipe(
         catchError(this.handleError<Animal[]>("")),
     );
   }

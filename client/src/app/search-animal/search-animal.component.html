@@ -1,1 +1,25 @@
-<div (click)="searchAnimal('a')"> AAAAAAAAAAAAAAAAA </div>
+<form #f="ngForm" (ngSubmit)="searchAnimal(input.value)" novalidate>
+    <input [(ngModel)]="username" name="Username" ngModel required #first="ngModel" placeholder="Recherche..." autocomplete="off" #input><br/>
+    <button class="button"><span>Recherche </span></button>
+  </form>
+
+  <table id ="ht" align="center" border="1" width="350">
+    <thead>
+        <th> Nom </th>
+        <th> État </th>
+        <th> Espèce </th>
+        <th> Description </th>
+        <th> Date de naissance </th>
+        <th> Date d'inscription </th>
+    </thead>
+    <tbody>
+        <tr *ngFor="let animal of _animals">
+                <td> {{animal.nom}}</td>
+                <td> {{animal.etat}}</td>
+                <td> {{animal.espece}}</td>
+                <td> {{animal.descr}}</td>
+                <td> {{animal.datenaissance}}</td>
+                <td> {{animal.dateins}}</td>
+        </tr>
+    </tbody>
+</table>
