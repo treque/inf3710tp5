@@ -179,8 +179,25 @@ export class DatabaseController {
         });
 
         router.post("/animal/search", (req: Request, res: Response, next: NextFunction) => {
-            console.log(req.body[0]);
             this.databaseService.getAnimalsByName(req.body[0])
+            .then((result: pg.QueryResult) => {
+                res.json(result.rows);
+            }).catch((e: Error) => {
+                console.error(e.stack);
+            });
+        });
+
+        router.post("/payment/bill", (req: Request, res: Response, next: NextFunction) => {
+            this.databaseService.getBillById(req.body.animId, req.body.ownerId, req.body.clinicId)
+            .then((result: pg.QueryResult) => {
+                res.json(result.rows);
+            }).catch((e: Error) => {
+                console.error(e.stack);
+            });
+        });
+
+        router.post("/payment/total", (req: Request, res: Response, next: NextFunction) => {
+            this.databaseService.getTotalBill(req.body.animId, req.body.ownerId, req.body.clinicId)
             .then((result: pg.QueryResult) => {
                 res.json(result.rows);
             }).catch((e: Error) => {

@@ -1,1 +1,30 @@
 <div (click)="getBill('A1', 'P3', 'C1')"> AAAAAAAA </div>
+
+    
+<table id ="ht" align="center" border="1" width="575">
+    <thead>
+        <th> Type de traitement</th>
+        <th> Qté</th>
+        <th> Description </th>
+        <th> Prix </th>
+        <th> Coût </th>
+
+    </thead>
+    <tbody>
+        <tr *ngFor="let treatment of _treatments">
+                <td> {{treatment.typeid}}</td>
+                <td> {{treatment.qte}}</td>
+                <td> {{treatment.cout}}</td>
+                <td> {{treatment.prix}}</td>
+                <td> {{treatment.cout}}</td>
+        </tr>
+    </tbody>
+    <tfoot>
+        <th></th>
+        <th></th>
+        <th></th>
+        <th> Total: </th>
+        <th> {{_total}} </th>
+    </tfoot>
+</table>
+

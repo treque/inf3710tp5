@@ -16,5 +16,6 @@ export interface Treatment {
     datedebut: string;
     datefin: string;
     descr: string;
-    cout: number;
+    prix?: number;
+    cout?: number;
 }

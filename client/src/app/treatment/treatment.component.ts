@@ -37,8 +37,6 @@ export class TreatmentComponent implements OnInit {
                                cout: treatment.cout
                               });
       }
-
-      //console.log(this._treatments[0].datefin.toLocaleDateString());
     });
   }
 }
