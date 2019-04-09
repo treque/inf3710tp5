@@ -32,7 +32,9 @@ export class TreatmentComponent implements OnInit {
         this._treatments.push({typeid: treatment.typeid,
                                qte: treatment.qte,
                                datedebut: new Date(treatment.datedebut).toLocaleDateString(),
-                               datefin: new Date(treatment.datefin).toLocaleDateString()
+                               datefin: new Date(treatment.datefin).toLocaleDateString(),
+                               descr: treatment.descr,
+                               cout: treatment.cout
                               });
       }
 

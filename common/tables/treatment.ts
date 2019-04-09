@@ -15,4 +15,6 @@ export interface Treatment {
     qte: string;
     datedebut: string;
     datefin: string;
+    descr: string;
+    cout: number;
 }
