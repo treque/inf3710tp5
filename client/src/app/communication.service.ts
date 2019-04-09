@@ -38,15 +38,41 @@ export class CommunicationService {
         );
     }
 
+    public getOwnerIdsByClinicId(clinicId: string): Observable<string[]> {
+        return this.http.get<string[]>(this.BASE_URL + "/owner/findByClinic" + "?id=" + clinicId).pipe(
+            catchError(this.handleError<string[]>("getOwnerIdsByClinicId")),
+        );
+    }
+
+    public getAnimalIdsByOwnerClinicId(ownerId: string, clinicId: string): Observable<string[]> {
+        return this.http.get<string[]>(this.BASE_URL + "/animal/findByOwnerClinic" + "?clinicId=" + clinicId +"&ownerId=" + ownerId ).pipe(
+            catchError(this.handleError<string[]>("getAnimalIdsByOwnerClinicId")),
+        );
+    }
+
     public insertAnimal(animal: Animal): Observable<number> {
+
         return this.http.post<number>(this.BASE_URL + "/animal/insert", animal).pipe(
-            catchError(this.handleError<number>("inserAnimal")),
+            catchError(this.handleError<number>("insertAnimal")),
+        );
+    }
+
+    public getClinicPKs(): Observable<string[]> {
+
+        return this.http.get<string[]>(this.BASE_URL + "/clinic/clinicId").pipe(
+            catchError(this.handleError<string[]>("getAnimalPKs")),
         );
     }
 
     public insertHotel(hotel: any): Observable<number> {
         return this.http.post<number>(this.BASE_URL + "/hotel/insert", hotel).pipe(
             catchError(this.handleError<number>("inserHotel")),
+        );
+    }
+
+    public deleteAnimalById(animalId: string, ownerId: string, clinicId: string): Observable<number> {
+        return this.http.delete<number>(this.BASE_URL + "/animal/delete" + "?animId=" + animalId + "&ownerId=" + ownerId + "&clinicId=" + clinicId).pipe(
+            catchError(this.handleError<number>("deleteAnimalById")),
         );
     }
 

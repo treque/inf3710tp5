@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { RouterModule, Routes } from "@angular/router";
 
 import { AnimalInserterComponent } from "./animal-inserter/animal-inserter.component";
+import { AnimalUpdaterComponent } from "./animal-updater/animal-updater.component";
 import { AppComponent } from "./app.component";
 import { HotelComponent } from "./hotel/hotel.component";
 import { RoomComponent } from "./room/room.component";
@@ -14,7 +15,8 @@ const routes: Routes = [
   { path: "hotel", component: HotelComponent },
   { path: "treatment", component: TreatmentComponent},
   { path: "animalInserter", component: AnimalInserterComponent},
-  { path: "search", component: SearchAnimalComponent}
+  { path: "search", component: SearchAnimalComponent},
+  { path: "animalUpdater", component: AnimalUpdaterComponent}
 ];
 
 @NgModule({
