@@ -82,10 +82,44 @@ export class DatabaseService {
             propId,
             cliniqueId
         ];
-        console.log(values);
         const queryText: string = 
         `INSERT INTO VSF.Animal (animId, nom, etat, espece, descr, dateNaissance, dateIns, propId, cliniqueId) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9);`;
 
+        return this.pool.query(queryText, values);
+    }
+
+    public getClinicPKs(): Promise<pg.QueryResult> {
+        return this.pool.query('SELECT cliniqueId FROM VSF.Clinique;');
+    }
+
+    public deleteAnimalById(animId: string, propId: string, cliniqueId: string): Promise<pg.QueryResult> {
+        const values: string[] = [
+            animId,
+            propId,
+            cliniqueId,
+        ];
+        const queryText: string = 
+        `DELETE FROM VSF.Animal WHERE animId = $1 AND propId = $2 AND cliniqueId = $3;`;
+
+        return this.pool.query(queryText, values);
+    }
+
+    public getOwnerIdsByClinicId(clinicId: string): Promise<pg.QueryResult> {
+        const values: string[] = [
+            clinicId
+        ];
+        const queryText: string = 
+        `SELECT propId FROM VSF.Proprietaire WHERE cliniqueId = $1;`;
+        return this.pool.query(queryText, values);
+    }
+
+    public getAnimalIdsByOwnerClinicId(ownerId: string, clinicId: string): Promise<pg.QueryResult> {
+        const values: string[] = [
+            clinicId,
+            ownerId
+        ];
+        const queryText: string = 
+        `SELECT animId FROM VSF.Animal WHERE cliniqueId = $1 AND propId = $2;`;
         return this.pool.query(queryText, values);
     }
 /*

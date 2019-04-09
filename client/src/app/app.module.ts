@@ -9,6 +9,7 @@ import { CommunicationService } from "./communication.service";
 import { HotelComponent } from "./hotel/hotel.component";
 import { RoomComponent } from "./room/room.component";
 import { TreatmentComponent } from "./treatment/treatment.component";
+import { AnimalUpdaterComponent } from './animal-updater/animal-updater.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { TreatmentComponent } from "./treatment/treatment.component";
     HotelComponent,
     AnimalInserterComponent,
     TreatmentComponent,
+    AnimalUpdaterComponent,
   ],
   imports: [
     CommonModule,

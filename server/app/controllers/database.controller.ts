@@ -80,6 +80,45 @@ export class DatabaseController {
                         res.json(-1);
                     });
         });
+
+        router.get("/clinic/clinicId",
+        (req: Request, res: Response, next: NextFunction) => {
+           this.databaseService.getClinicPKs().then((result: pg.QueryResult) => {
+             const clinicPKs: string[] = result.rows.map((row: any) => row.cliniqueid);
+             res.json(clinicPKs);
+           }).catch((e: Error) => {
+             console.error(e.stack);
+         });
+       });
+
+       router.delete("/animal/delete",
+       (req: Request, res: Response, next: NextFunction) => {
+          this.databaseService.deleteAnimalById(req.query.animId, req.query.ownerId, req.query.clinicId).then((result: pg.QueryResult) => {
+            res.json(result);
+          }).catch((e: Error) => {
+            console.error(e.stack);
+        });
+      });
+
+       router.get("/owner/findByClinic",
+       (req: Request, res: Response, next: NextFunction) => {
+          this.databaseService.getOwnerIdsByClinicId(req.query.id).then((result: pg.QueryResult) => {
+            const ownerIds: string[] = result.rows.map((row: any) => row.propid)
+            res.json(ownerIds);
+          }).catch((e: Error) => {
+            console.error(e.stack);
+        });
+      });
+
+      router.get("/animal/findByOwnerClinic",
+      (req: Request, res: Response, next: NextFunction) => {
+         this.databaseService.getAnimalIdsByOwnerClinicId(req.query.ownerId, req.query.clinicId).then((result: pg.QueryResult) => {
+            const animalIds: string[] = result.rows.map((row: any) => row.animid);
+           res.json(animalIds);
+         }).catch((e: Error) => {
+           console.error(e.stack);
+       });
+     });
 /*
         router.get("/rooms",
                    (req: Request, res: Response, next: NextFunction) => {
