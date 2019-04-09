@@ -63,15 +63,15 @@ export class DatabaseController {
 */
         router.post("/animal/insert",
                     (req: Request, res: Response, next: NextFunction) => {
-                        const animId: string = req.body.animId;
+                        const animId: string = req.body.animid;
                         const nom: string = req.body.nom;
                         const etat: string = req.body.etat;
                         const espece: string = req.body.espece;
                         const descr: string = req.body.descr;
-                        const dateNaissance: string = req.body.dateNaissance;
-                        const dateIns: string = req.body.dateIns;
-                        const propId: string = req.body.propId;
-                        const cliniqueId: string = req.body.cliniqueId;
+                        const dateNaissance: string = req.body.datenaissance;
+                        const dateIns: string = req.body.dateins;
+                        const propId: string = req.body.propid;
+                        const cliniqueId: string = req.body.cliniqueid;
                         this.databaseService.createAnimal(  animId, nom, etat, espece, descr,
                                                             dateNaissance, dateIns, propId, cliniqueId).then((result: pg.QueryResult) => {
                         res.json(result.rowCount);

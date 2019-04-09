@@ -1,11 +1,11 @@
 export interface Animal {
-    "animId": string;
+    "animid": string;
     "nom": string;
     "etat": string;
     "espece": string;
     "descr": string;
-    "dateNaissance": string;
-    "dateIns": string;
-    "propId": string;
-    "cliniqueId": string;
+    "datenaissance": string;
+    "dateins": string;
+    "propid": string;
+    "cliniqueid": string;
 }

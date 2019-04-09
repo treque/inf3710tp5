@@ -25,14 +25,14 @@ export class DatabaseService {
         METHODES DE DEBUG
     */
     public createSchema(): Promise<pg.QueryResult> {
-        //this.pool.connect();
+        this.pool.connect();
 
         console.log(this.pool.query(schema));
         return this.pool.query(schema);
     }
 
     public populateDb(): Promise<pg.QueryResult> {
-        //this.pool.connect();
+            this.pool.connect();
 
         return this.pool.query(data);
     }
@@ -82,6 +82,7 @@ export class DatabaseService {
             propId,
             cliniqueId
         ];
+        console.log(values);
         const queryText: string = 
         `INSERT INTO VSF.Animal (animId, nom, etat, espece, descr, dateNaissance, dateIns, propId, cliniqueId) VALUES($1, $2, $3, $4, $5, $6, $7, $8, $9);`;
 
