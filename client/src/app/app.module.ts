@@ -13,6 +13,7 @@ import { RoomComponent } from "./room/room.component";
 import { SearchAnimalComponent } from "./search-animal/search-animal.component";
 import { TreatmentComponent } from "./treatment/treatment.component";
 import { PaymentComponent } from './payment/payment.component';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { PaymentComponent } from './payment/payment.component';
     HttpClientModule,
     AppRoutingModule,
     FormsModule,
+    NgbModule,
   ],
   providers: [CommunicationService],
   bootstrap: [AppComponent],

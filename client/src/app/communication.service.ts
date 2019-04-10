@@ -64,6 +64,12 @@ export class CommunicationService {
         );
     }
 
+    public getAnimalById(animId: string, ownerId: string, clinicId: string): Observable<Animal> {
+        return this.http.get<Animal>(this.BASE_URL + "/animal/get" + "?animId=" + animId + "&ownerId=" + ownerId + "&clinicId=" + clinicId).pipe(
+            catchError(this.handleError<Animal>("getAnimalById")),
+        );
+    }
+
     public insertHotel(hotel: any): Observable<number> {
         return this.http.post<number>(this.BASE_URL + "/hotel/insert", hotel).pipe(
             catchError(this.handleError<number>("inserHotel")),
@@ -73,6 +79,12 @@ export class CommunicationService {
     public deleteAnimalById(animalId: string, ownerId: string, clinicId: string): Observable<number> {
         return this.http.delete<number>(this.BASE_URL + "/animal/delete" + "?animId=" + animalId + "&ownerId=" + ownerId + "&clinicId=" + clinicId).pipe(
             catchError(this.handleError<number>("deleteAnimalById")),
+        );
+    }
+
+    public updateAnimal(animal: Animal){
+        return this.http.post<number>(this.BASE_URL + "/animal/update", animal).pipe(
+            catchError(this.handleError<number>("updateAnimal")),
         );
     }
 

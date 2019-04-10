@@ -88,6 +88,24 @@ export class DatabaseService {
         return this.pool.query(queryText, values);
     }
 
+    public updateAnimal(animId: string, nom: string, etat: string, espece: string, descr: string,
+        dateNaissance: string, dateIns: string, propId: string, cliniqueId: string): Promise<pg.QueryResult> {
+        const values: string[] = [
+            animId,
+            nom,
+            etat,
+            espece,
+            descr,
+            dateNaissance,
+            dateIns,
+            propId,
+            cliniqueId
+        ];
+        const queryText: string = 
+        `UPDATE VSF.Animal SET nom = $2, etat = $3, descr = $5, espece = $4, dateNaissance= $6, dateIns = $7 WHERE animId = $1 AND propId = $8 AND cliniqueId = $9;`;
+        return this.pool.query(queryText, values);
+    }
+
     public getClinicPKs(): Promise<pg.QueryResult> {
         return this.pool.query('SELECT cliniqueId FROM VSF.Clinique;');
     }
@@ -120,6 +138,19 @@ export class DatabaseService {
         ];
         const queryText: string = 
         `SELECT animId FROM VSF.Animal WHERE cliniqueId = $1 AND propId = $2;`;
+        
+        return this.pool.query(queryText, values);
+    }
+
+    public getAnimalById(animId: string, ownerId: string, clinicId: string): Promise<pg.QueryResult> {
+        const values: string[] = [
+            clinicId,
+            ownerId,
+            animId,
+        ];
+        const queryText: string = 
+        `SELECT * FROM VSF.Animal WHERE cliniqueId = $1 AND propId = $2 AND animId = $3;`;
+
         return this.pool.query(queryText, values);
     }
 /*

@@ -2,9 +2,6 @@ import { NextFunction, Request, Response, Router } from "express";
 import { inject, injectable } from "inversify";
 import * as pg from "pg";
 
-//import {Hotel} from "../../../common/tables/Hotel";
-//import {Room} from '../../../common/tables/Room';
-
 import { DatabaseService } from "../services/database.service";
 import Types from "../types";
 
@@ -81,6 +78,26 @@ export class DatabaseController {
                     });
         });
 
+        router.post("/animal/update",
+                    (req: Request, res: Response, next: NextFunction) => {
+                        const animId: string = req.body.animid;
+                        const nom: string = req.body.nom;
+                        const etat: string = req.body.etat;
+                        const espece: string = req.body.espece;
+                        const descr: string = req.body.descr;
+                        const dateNaissance: string = req.body.datenaissance;
+                        const dateIns: string = req.body.dateins;
+                        const propId: string = req.body.propid;
+                        const cliniqueId: string = req.body.cliniqueid;
+                        this.databaseService.updateAnimal(  animId, nom, etat, espece, descr,
+                                                            dateNaissance, dateIns, propId, cliniqueId).then((result: pg.QueryResult) => {
+                        res.json(result.rowCount);
+                    }).catch((e: Error) => {
+                        console.error(e.stack);
+                        res.json(-1);
+                    });
+        });
+
         router.get("/clinic/clinicId",
         (req: Request, res: Response, next: NextFunction) => {
            this.databaseService.getClinicPKs().then((result: pg.QueryResult) => {
@@ -99,6 +116,17 @@ export class DatabaseController {
             console.error(e.stack);
         });
       });
+
+        router.get("/animal/get",
+                (req: Request, res: Response, next: NextFunction) => {
+
+                    this.databaseService.getAnimalById(req.query.animId, req.query.ownerId, req.query.clinicId)
+                    .then((result: pg.QueryResult) => {
+                        res.json(result.rows[0]);
+                    }).catch((e: Error) => {
+                        console.error(e.stack);
+                    });
+            });
 
         router.get("/owner/findByClinic",
                   (req: Request, res: Response, next: NextFunction) => {

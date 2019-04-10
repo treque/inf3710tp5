@@ -40,13 +40,13 @@ export class AnimalInserterComponent {
       "propid": propId,
       "cliniqueid": cliniqueId,
     };
-    console.log(animal);
     this.communicationService.insertAnimal(animal).subscribe((res: number) => {
         if (res > 0) {
             this.communicationService.filter("update");
         }
         this.duplicateError = (res === -1);
     });
+    location.reload();
   }
 
 }
