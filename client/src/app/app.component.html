@@ -6,34 +6,16 @@
     <a class="navbar-brand title" href="/">INF3710-TP5</a>
     <div class="navbar-expand mr-auto">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" routerLink="/hotel">Hotels</a>
-        <a class="nav-item nav-link active" routerLink="/room">Rooms</a>
+        <a class="nav-item nav-link active" routerLink="/animalUpdater">Supprimer ou modifier un animal</a>
+        <a class="nav-item nav-link active" routerLink="/animalInserter">Enregistrer un animal</a>
       </div>
     </div>
   </nav>
 
 <div style="text-align:center">
 <div *ngIf="route == ''">
-  <button type="button" class="btn btn-danger" (click) ="createDB()">Create Database</button>
+  <button type="button" class="btn btn-danger" (click) ="createDB()">Initialiser la base de donnee</button>
 </div>
 
 <router-outlet></router-outlet>
-
-
-<div id="ht" style="text-align:center" *ngIf="route != '/room'">
-  <button type="button" class="btn btn-primary" (click)="getHotels()">Get Hotels</button>
-  <table id ="ht" align="center" border="1" width="350">
-    <thead>
-      <th> HOTEL</th>
-      <th> CITY</th>
-    </thead>
-    <tbody>
-      <tr *ngFor="let hotel of hotels">
-        <td> {{hotel.hotelname}}</td>
-        <td> {{hotel.city}} </td>
-      </tr>
-    </tbody>
-  </table>
-</div>
-
 
