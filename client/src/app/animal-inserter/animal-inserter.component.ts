@@ -1,6 +1,7 @@
 import { Component } from "@angular/core";
 import { Animal } from "../../../../common/tables/Animal";
 import { CommunicationService } from "../communication.service";
+import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-animal-inserter",
@@ -8,8 +9,11 @@ import { CommunicationService } from "../communication.service";
   styleUrls: ["./animal-inserter.component.css"]
 })
 export class AnimalInserterComponent {
+  model: NgbDateStruct;
+  isDisabled = (date: NgbDate, current: {month: number}) => date.month !== current.month;
+  isWeekend = (date: NgbDate) =>  this.calendar.getWeekday(date) >= 6;
 
-  public constructor(private communicationService: CommunicationService) { }
+  public constructor(private communicationService: CommunicationService, private calendar: NgbCalendar) { }
 
   public duplicateError: boolean = false;
 

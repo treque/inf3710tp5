@@ -15,7 +15,16 @@
           <option>DECEDE</option>
         </select></li>
         description : <li><input class="form-control col-md-4" #desc></li>
-        date de naissance (YYYY-MM-DD) : <li><input class="form-control col-md-4" type="text" id="datepicker" #ddn></li>
+        date de naissance (YYYY-MM-DD) : <li> <input class="form-control col-md-4" placeholder="yyyy-mm-dd" #ddn (click)="d.toggle()"
+          [(ngModel)]="model" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker"></li>
       <li><button type="button" class="btn btn-primary" (click)="insertAnimal(animId.value, nom.value, etat.value, espece.value, desc.value, ddn.value, propId.value, cliniqueId.value)"> Ajouter un animal</button></li>
     </ul>
+    <ng-template #customDay let-date let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled" let-focused="focused">
+        <span class="custom-day" [class.weekend]="isWeekend(date)" [class.focused]="focused"
+              [class.bg-primary]="selected" [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+          {{ date.day }}
+        </span>
+    </ng-template>
     </div>
+
+    

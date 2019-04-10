@@ -32,11 +32,23 @@
 
         description : <li><input class="form-control col-md-4" #desc></li>
 
-        date de naissance (YYYY-MM-DD) : <li><input class="form-control col-md-4" type="text" id="datepicker" #ddn></li>
-        date d'inscription (YYYY-MM-DD) : <li><input class="form-control col-md-4" #di></li>
-      
+        date de naissance (YYYY-MM-DD) : <li>
+            <input class="form-control col-md-4" placeholder="yyyy-mm-dd" #ddn (click)="d.toggle()"
+            [(ngModel)]="model" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
+        </li>
+        date d'inscription (YYYY-MM-DD) : <li><input class="form-control col-md-4" #di disabled = "disabled"></li>
       <li><button type="button" class="btn btn-primary" (click)="updateAnimal(nom.value, espece.value, etat.value, desc.value, ddn.value, di.value)">Confirmer les modifications</button></li>
       <li><button type="button" class="btn btn-primary" style="background-color: red" (click)="deleteAnimalById(animId.value, propId.value, cliniqueId.value)">Supprimer l'animal</button></li>
 
     </ul>
+
+
+    <ng-template #customDay let-date let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled" let-focused="focused">
+      <span class="custom-day" [class.weekend]="isWeekend(date)" [class.focused]="focused"
+            [class.bg-primary]="selected" [class.hidden]="date.month !== currentMonth" [class.text-muted]="disabled">
+        {{ date.day }}
+      </span>
+    </ng-template>
+
+
     </div>

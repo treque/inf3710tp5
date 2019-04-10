@@ -1,6 +1,7 @@
 import { Component, ViewChild, ElementRef } from "@angular/core";
 import { Animal } from "../../../../common/tables/Animal";
 import { CommunicationService } from "../communication.service";
+import { NgbCalendar, NgbDate, NgbDateStruct } from '@ng-bootstrap/ng-bootstrap';
 
 @Component({
   selector: "app-animal-updater",
@@ -8,6 +9,10 @@ import { CommunicationService } from "../communication.service";
   styleUrls: ["./animal-updater.component.css"]
 })
 export class AnimalUpdaterComponent {
+  model: NgbDateStruct;
+  isDisabled = (date: NgbDate, current: {month: number}) => date.month !== current.month;
+  isWeekend = (date: NgbDate) =>  this.calendar.getWeekday(date) >= 6;
+
   @ViewChild("nom") nameField: ElementRef;
   @ViewChild("espece") typeField: ElementRef;
   @ViewChild("etat") stateField: ElementRef;
@@ -24,7 +29,7 @@ export class AnimalUpdaterComponent {
   public isOwnersDisabled: boolean = true;
   public isAnimalsDisabled: boolean = true;
 
-  public constructor(private communicationService: CommunicationService){
+  public constructor(private communicationService: CommunicationService, private calendar: NgbCalendar){
     this.communicationService.getClinicPKs().subscribe((res: string[]) => {
       this.clinicIds = res;
     });
