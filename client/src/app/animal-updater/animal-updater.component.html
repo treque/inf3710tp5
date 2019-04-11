@@ -34,8 +34,10 @@
             [(ngModel)]="model" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
         </li>
         Date d'inscription: <li><input class="form-control col-md-4" #di disabled = "disabled"></li>
+      <br>
       <li><button type="button" class="btn btn-primary" (click)="updateAnimal(nom.value, espece.value, etat.value, desc.value, ddn.value, di.value)">Confirmer les modifications</button></li>
-      <li><button type="button" class="btn btn-primary" style="background-color: red" (click)="deleteAnimalById(animId.value, propId.value, cliniqueId.value)">Supprimer l'animal</button></li>
+      <br>
+      <li><button type="button" class="btn btn-danger" (click)="deleteAnimalById(animId.value, propId.value, cliniqueId.value)">Supprimer l'animal</button></li>
 
     </ul>
 
