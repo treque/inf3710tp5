@@ -1,39 +1,54 @@
 
-
-<div id="hotel" style="text-align: left">
-
-    <h1>Ajouter un animal</h1>
+<div class="jumbotron">
+    <h1 class="display-4">Enregistrer un animal</h1>
     <div id="error" class="alert alert-danger" role="alert" *ngIf="duplicateError">
-      L'identifiant entré est déjà associé à un animal pour ce propriétaire. Entrez un nouvel identifiant animal.
-    </div>
+        L'identifiant entré est déjà associé à un animal pour ce propriétaire. Entrez un nouvel identifiant animal.
+      </div>
+    <p class="lead">Informations</p>
+    <hr class="my-4">
 
-    
-      <ul style="list-style: none;">
+    <div class="row">
 
-        Identifiant de la clinique: <li><select id="inputState" class="form-control col-md-4" #cliniqueId  [(ngModel)]="selectedClinic" (change)="updateOwners()">
+        <div class="col">
+          Identifiant de la clinique: <select id="inputState" class="form-control" #cliniqueId  [(ngModel)]="selectedClinic" (change)="updateOwners()">
           <option selected>Choisir...</option>
           <option *ngFor = "let clinicId of clinicIds" value="{{ clinicId }}">{{ clinicId }}</option>
-        </select></li>
+          </select>
+        </div>
 
-        Identifiant du proprietaire: <li><select id="inputState" class="form-control col-md-4" #propId [(ngModel)]="selectedOwner" [disabled] = "isOwnersDisabled">
+        <div class="col">
+          Identifiant du proprietaire: <select id="inputState" class="form-control" #propId [(ngModel)]="selectedOwner" [disabled] = "isOwnersDisabled">
           <option selected>Choisir...</option>
           <option *ngFor = "let ownerId of ownerIds" value = "{{ ownerId }}">{{ ownerId }}</option>
-        </select></li>
+          </select>
+        </div>
 
-        Identifiant de l'animal: <li><input class="form-control col-md-4" #animId placeholder= "e.g. A1"></li>
+        <div class="col">
+          Identifiant de l'animal: <input class="form-control" #animId placeholder= "e.g. A1">
+        </div>
 
-        Nom de l'animal: <li><input class="form-control col-md-4" #nom></li>
-        Espèce: <li><input class="form-control col-md-4" #espece placeholder = "e.g. chien, chat, tortue"></li>
-        État: <li><select id="inputState" class="form-control col-md-4" #etat>
+    </div>
+
+    <div class = "col">
+        Nom de l'animal: <input class="form-control" #nom>
+
+        Espèce: <input class="form-control" #espece placeholder = "e.g. chien, chat, tortue">
+
+        État: <select id="inputState" class="form-control" #etat>
           <option selected>Choisir...</option>
           <option>VIVANT</option>
           <option>DECEDE</option>
-        </select></li>
-        Description: <li><input class="form-control col-md-4" #desc></li>
-        Date de naissance: <li> <input class="form-control col-md-4" placeholder="yyyy-mm-dd" #ddn (click)="d.toggle()"
-          [(ngModel)]="model" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker"></li>
-      <li><button type="button" class="btn btn-primary" (click)="insertAnimal(animId.value, nom.value, etat.value, espece.value, desc.value, ddn.value, propId.value, cliniqueId.value)"> Ajouter un animal</button></li>
-    </ul>
+        </select>
+
+        Description: <input class="form-control" #desc>
+
+        Date de naissance: <input class="form-control" placeholder="yyyy-mm-dd" #ddn (click)="d.toggle()"
+          [(ngModel)]="model" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
+    </div>
+
+    <button type="button" class="btn btn-primary" (click)="insertAnimal(animId.value, nom.value, etat.value, espece.value, desc.value, ddn.value, propId.value, cliniqueId.value)"> Ajouter un animal</button>
+  </div>
+  
 
     <ng-template #customDay let-date let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled" let-focused="focused">
         <span class="custom-day" [class.weekend]="isWeekend(date)" [class.focused]="focused"
@@ -41,6 +56,5 @@
           {{ date.day }}
         </span>
     </ng-template>
-    </div>
 
     
