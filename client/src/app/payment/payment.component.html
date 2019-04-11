@@ -3,10 +3,25 @@
         <div id="error" class="alert alert-danger" role="alert" *ngIf="duplicateError">
           NOPE
         </div>
-        <ul style="list-style: none;">
+        <ul style="list-style: none;"> <!--
             ID de l'animal : <li><input class="form-control col-md-4" #animId></li>
             ID du propriétaire : <li><input class="form-control col-md-4" #propId></li>
             ID de la clinique : <li><input  class="form-control col-md-4" #clinicId></li>
+        -->
+            clinique id: <li><select id="inputState" class="form-control col-md-4" #cliniqueId  [(ngModel)]="selectedClinic" (change)="updateOwners()">
+            <option selected>Choisir...</option>
+            <option *ngFor = "let clinicId of clinicIds" value="{{ clinicId }}">{{ clinicId }}</option>
+          </select></li>
+  
+          proprietaire id: <li><select id="inputState" class="form-control col-md-4" #propId [(ngModel)]="selectedOwner" (change)="updateAnimals()" [disabled] = "isOwnersDisabled">
+            <option selected>Choisir...</option>
+            <option *ngFor = "let ownerId of ownerIds" value = "{{ ownerId }}">{{ ownerId }}</option>
+          </select></li>
+  
+          animal id : <li><select id="inputState" class="form-control col-md-4" #animId [(ngModel)]="selectedAnimal" [disabled] = "isAnimalsDisabled" (change)= "updateFields()">
+            <option selected>Choisir...</option>
+            <option *ngFor = "let animalId of animalIds" value = "{{ animalId }}">{{ animalId }}</option>
+          </select></li>
           <li><button type="button" class="btn btn-primary" (click)="getBill(animId.value,propId.value, clinicId.value)"> Recherche </button></li>
         </ul>
 </div>

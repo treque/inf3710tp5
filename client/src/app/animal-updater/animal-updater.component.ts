@@ -35,7 +35,7 @@ export class AnimalUpdaterComponent {
     });
   }
 
-  private resetFields(): void{
+  private resetFields(): void {
     this.nameField.nativeElement.value = "";
     this.typeField.nativeElement.value = "";
     this.stateField.nativeElement.value = "";

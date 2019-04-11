@@ -10,10 +10,20 @@ import { PaymentService } from "../services/payment.service";
 })
 export class PaymentComponent {
 
+  public _selectedClinic: string;
+  public _selectedOwner: string;
+  public _selectedAnimal: string;
+  public clinicIds: string[];
+  public ownerIds: string[];
+  public animalIds: string[];
   public _treatments: Treatment[];
   public _total: number;
 
   public constructor(private paymentService: PaymentService) {
+    this._selectedClinic = "Choisir...";
+    this._selectedOwner = "Choisir...";
+    this._selectedAnimal = "Choisir...";
+
     this._treatments = [];
     this._total = 0;
   }
