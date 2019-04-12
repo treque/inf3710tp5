@@ -99,7 +99,7 @@ export class DatabaseController {
         });
 
         router.get("/clinic/clinicId",
-        (req: Request, res: Response, next: NextFunction) => {
+                   (req: Request, res: Response, next: NextFunction) => {
            this.databaseService.getClinicPKs().then((result: pg.QueryResult) => {
              const clinicPKs: string[] = result.rows.map((row: any) => row.cliniqueid);
              res.json(clinicPKs);
@@ -109,7 +109,7 @@ export class DatabaseController {
        });
 
         router.delete("/animal/delete",
-       (req: Request, res: Response, next: NextFunction) => {
+                      (req: Request, res: Response, next: NextFunction) => {
           this.databaseService.deleteAnimalById(req.query.animId, req.query.ownerId, req.query.clinicId).then((result: pg.QueryResult) => {
             res.json(result);
           }).catch((e: Error) => {
@@ -118,7 +118,7 @@ export class DatabaseController {
       });
 
         router.get("/animal/get",
-                (req: Request, res: Response, next: NextFunction) => {
+                   (req: Request, res: Response, next: NextFunction) => {
 
                     this.databaseService.getAnimalById(req.query.animId, req.query.ownerId, req.query.clinicId)
                     .then((result: pg.QueryResult) => {
@@ -129,7 +129,7 @@ export class DatabaseController {
             });
 
         router.get("/owner/findByClinic",
-                  (req: Request, res: Response, next: NextFunction) => {
+                   (req: Request, res: Response, next: NextFunction) => {
           this.databaseService.getOwnerIdsByClinicId(req.query.id).then((result: pg.QueryResult) => {
             const ownerIds: string[] = result.rows.map((row: any) => row.propid)
             res.json(ownerIds);

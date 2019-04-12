@@ -29,7 +29,7 @@ export class AnimalUpdaterComponent {
   public isOwnersDisabled: boolean = true;
   public isAnimalsDisabled: boolean = true;
 
-  public constructor(private communicationService: CommunicationService, private calendar: NgbCalendar){
+  public constructor(private communicationService: CommunicationService, private calendar: NgbCalendar) {
     this.communicationService.getClinicPKs().subscribe((res: string[]) => {
       this.clinicIds = res;
     });
