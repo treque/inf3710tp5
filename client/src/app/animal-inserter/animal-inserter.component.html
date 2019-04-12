@@ -45,14 +45,15 @@
                 <option>DECEDE</option>
               </select>
         </div>
-    </div>
-    <div class = "row">
-        <div class = "col">
-          Description: <input class="form-control" #desc>
-        </div>
         <div class = "col">
           Date de naissance: <input class="form-control" placeholder="yyyy-mm-dd" #ddn (click)="d.toggle()"
             [(ngModel)]="model" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
+        </div>
+    </div>
+    <br>
+    <div class = "row">
+        <div class = "col">
+          Description: <textarea class="form-control" #desc placeholder="e.g. chien vert puant chroniquement sale"></textarea>
         </div>
       </div>
     <br>
