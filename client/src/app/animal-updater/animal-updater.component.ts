@@ -28,6 +28,7 @@ export class AnimalUpdaterComponent {
   public selectedAnimal: string = "Choisir...";
   public isOwnersDisabled: boolean = true;
   public isAnimalsDisabled: boolean = true;
+  public success: boolean = false;
 
   public constructor(private communicationService: CommunicationService, private calendar: NgbCalendar) {
     this.communicationService.getClinicPKs().subscribe((res: string[]) => {
@@ -76,7 +77,9 @@ export class AnimalUpdaterComponent {
     this.communicationService.updateAnimal(animal).subscribe((res: number) => {
       console.log(res);
     });
-    location.reload();
+    
+    this.success = true;
+            setTimeout(() => {location.reload();}, 3000);
   }
 
   private getAnimalAndUpdate(animId: string, ownerId: string, clinicId: string): void {
@@ -106,7 +109,8 @@ export class AnimalUpdaterComponent {
     this.communicationService.deleteAnimalById(animalId, ownerId, clinicId).subscribe((res: any) => {
       return res;
     })
-    location.reload();
+    this.success = true;
+            setTimeout(() => {location.reload();}, 3000);
   }
 
 }

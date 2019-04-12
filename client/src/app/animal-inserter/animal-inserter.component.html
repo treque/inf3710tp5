@@ -2,8 +2,11 @@
     <h1 class="display-4">Enregistrer un animal</h1>
     <div id="error" class="alert alert-danger" role="alert" *ngIf="duplicateError">
         L'identifiant entré est déjà associé à un animal pour ce propriétaire. Entrez un nouvel identifiant animal.
-      </div>
-    <p class="lead">Ici, vous pouvez enregistrer manuellement un nouvel animal à un propriétaire existant.</p>
+    </div>
+    <div class="alert alert-success" role="alert" *ngIf="success">
+        Animal enregistré avec succès!
+     </div>
+    <p class="lead">Ici, vous pouvez enregistrer un nouvel animal à un propriétaire existant.</p>
     <hr class="my-4">
 
     <div class="row">
@@ -23,11 +26,11 @@
         </div>
 
         <div class="col">
-          Identifiant de l'animal: <input class="form-control" #animId placeholder= "e.g. A1">
+          Identifiant de l'animal: <input class="form-control" #animId placeholder= "e.g. A1, A460, A9999">
         </div>
 
     </div>
-
+<br>
     <div class = "row">
         <div class="col">
           Nom de l'animal: <input class="form-control" #nom>
@@ -44,14 +47,14 @@
         </div>
     </div>
     <div class = "row">
-      <div class = "col">
-        Description: <input class="form-control" #desc>
+        <div class = "col">
+          Description: <input class="form-control" #desc>
+        </div>
+        <div class = "col">
+          Date de naissance: <input class="form-control" placeholder="yyyy-mm-dd" #ddn (click)="d.toggle()"
+            [(ngModel)]="model" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
+        </div>
       </div>
-      <div class = "col">
-        Date de naissance: <input class="form-control" placeholder="yyyy-mm-dd" #ddn (click)="d.toggle()"
-          [(ngModel)]="model" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
-      </div>
-    </div>
     <br>
     <button type="button" class="btn btn-primary" (click)="insertAnimal(animId.value, nom.value, etat.value, espece.value, desc.value, ddn.value, propId.value, cliniqueId.value)"> Ajouter un animal</button>
 </div>

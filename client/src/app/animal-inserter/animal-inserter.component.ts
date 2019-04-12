@@ -17,6 +17,7 @@ export class AnimalInserterComponent {
   public isOwnersDisabled: boolean = true;
   public selectedClinic: string = "Choisir...";
   public duplicateError: boolean = false;
+  public success: boolean = false;
 
   public constructor(private communicationService: CommunicationService, private calendar: NgbCalendar) { 
     this.communicationService.getClinicPKs().subscribe((res: string[]) => {
@@ -65,7 +66,8 @@ export class AnimalInserterComponent {
     this.communicationService.insertAnimal(animal).subscribe((res: number) => {
         if (res > 0) {
             this.communicationService.filter("update");
-            location.reload();
+            this.success = true;
+            setTimeout(() => {location.reload();}, 3000);
         }
         this.duplicateError = (res === -1);
     });
