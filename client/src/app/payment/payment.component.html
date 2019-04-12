@@ -29,8 +29,8 @@
 <table class = "table table-striped">
     <thead class = "thead-dark">
         <th> Type de traitement</th>
-        <th> Qté</th>
         <th> Description </th>
+        <th> Qté</th>
         <th> Prix </th>
         <th> Coût </th>
 
@@ -38,9 +38,9 @@
     <tbody>
         <tr *ngFor="let treatment of _treatments">
                 <td> {{treatment.typeid}}</td>
-                <td> {{treatment.qte}}</td>
-                <td> {{treatment.cout}}</td>
                 <td> {{treatment.descr}}</td>
+                <td> {{treatment.qte}}</td>
+                <td> {{treatment.prix}}</td>
                 <td> {{treatment.cout}}</td>
         </tr>
     </tbody>

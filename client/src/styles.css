@@ -5,4 +5,10 @@
 
 .btn-primary{
     margin-top: 10px;
+    font-size: 20px;
+    padding: 10px;
+    background-color: #3a5a8e;
+    border-color: #0e1d35;
+    font-family: 'Archivo Narrow', sans-serif;
+
 }

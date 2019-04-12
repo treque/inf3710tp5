@@ -11,5 +11,12 @@
     margin-top: 20px;
 }
 .title {
-    color: red;
+    color: bisque;
   }
+
+#navbarDropdown {
+    padding-top: 10px;
+    padding-left: 20px;
+    font-size: 21.5px;
+    font-family: 'Archivo Narrow', sans-serif;
+}
