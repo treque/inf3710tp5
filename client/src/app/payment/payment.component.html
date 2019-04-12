@@ -4,11 +4,7 @@
     <div id="error" class="alert alert-danger" role="alert" *ngIf="duplicateError">
             NOPE
           </div>
-            <ul style="list-style: none;"> <!--
-                ID de l'animal : <li><input class="form-control col-md-4" #animId></li>
-                ID du propriétaire : <li><input class="form-control col-md-4" #propId></li>
-                ID de la clinique : <li><input  class="form-control col-md-4" #clinicId></li>
-            -->
+            <ul style="list-style: none;">
                 clinique id: <li><select id="inputState" class="form-control col-md-4" #clinique  [(ngModel)]="_selectedClinic" (change)="updateOwners()" style="margin-left: 33%;">
                 <option selected>Choisir...</option>
                 <option *ngFor = "let clinicId of _clinicIds" value="{{ clinicId }}">{{ clinicId }}</option>
