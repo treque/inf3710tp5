@@ -20,3 +20,7 @@
     font-size: 21.5px;
     font-family: 'Archivo Narrow', sans-serif;
 }
+
+.dropdown-item {
+    font-family: 'Merriweather Sans', sans-serif;
+}
