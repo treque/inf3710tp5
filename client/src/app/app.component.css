@@ -14,6 +14,9 @@
     color: bisque;
   }
 
+#veterius:hover {
+    color: white;
+}
 #navbarDropdown {
     padding-top: 10px;
     padding-left: 20px;
