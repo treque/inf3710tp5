@@ -1,10 +1,9 @@
-
 <div class="jumbotron">
     <h1 class="display-4">Enregistrer un animal</h1>
     <div id="error" class="alert alert-danger" role="alert" *ngIf="duplicateError">
         L'identifiant entré est déjà associé à un animal pour ce propriétaire. Entrez un nouvel identifiant animal.
       </div>
-    <p class="lead">Informations</p>
+    <p class="lead">Ici, vous pouvez enregistrer manuellement un nouvel animal à un propriétaire existant.</p>
     <hr class="my-4">
 
     <div class="row">
@@ -29,25 +28,33 @@
 
     </div>
 
-    <div class = "col">
-        Nom de l'animal: <input class="form-control" #nom>
-
-        Espèce: <input class="form-control" #espece placeholder = "e.g. chien, chat, tortue">
-
-        État: <select id="inputState" class="form-control" #etat>
-          <option selected>Choisir...</option>
-          <option>VIVANT</option>
-          <option>DECEDE</option>
-        </select>
-
+    <div class = "row">
+        <div class="col">
+          Nom de l'animal: <input class="form-control" #nom>
+        </div>
+        <div class="col">
+          Espèce: <input class="form-control" #espece placeholder = "e.g. chien, chat, tortue">
+        </div>
+        <div class="col">
+            État: <select id="inputState" class="form-control" #etat>
+                <option selected>Choisir...</option>
+                <option>VIVANT</option>
+                <option>DECEDE</option>
+              </select>
+        </div>
+    </div>
+    <div class = "row">
+      <div class = "col">
         Description: <input class="form-control" #desc>
-
+      </div>
+      <div class = "col">
         Date de naissance: <input class="form-control" placeholder="yyyy-mm-dd" #ddn (click)="d.toggle()"
           [(ngModel)]="model" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
+      </div>
     </div>
-
+    <br>
     <button type="button" class="btn btn-primary" (click)="insertAnimal(animId.value, nom.value, etat.value, espece.value, desc.value, ddn.value, propId.value, cliniqueId.value)"> Ajouter un animal</button>
-  </div>
+</div>
   
 
     <ng-template #customDay let-date let-currentMonth="currentMonth" let-selected="selected" let-disabled="disabled" let-focused="focused">
