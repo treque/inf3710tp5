@@ -12,10 +12,28 @@ export class AnimalInserterComponent {
   model: NgbDateStruct;
   isDisabled = (date: NgbDate, current: {month: number}) => date.month !== current.month;
   isWeekend = (date: NgbDate) =>  this.calendar.getWeekday(date) >= 6;
-
-  public constructor(private communicationService: CommunicationService, private calendar: NgbCalendar) { }
-
+  public clinicIds: string[];
+  public ownerIds: string[];
+  public isOwnersDisabled: boolean = true;
+  public selectedClinic: string = "Choisir...";
   public duplicateError: boolean = false;
+
+  public constructor(private communicationService: CommunicationService, private calendar: NgbCalendar) { 
+    this.communicationService.getClinicPKs().subscribe((res: string[]) => {
+      this.clinicIds = res;
+    });
+  }
+
+  public updateOwners(): void {
+    this.isOwnersDisabled = false;
+    this.getOwnerIdsByClinicId(this.selectedClinic);
+  }
+
+  private getOwnerIdsByClinicId(clinicId: string): void {
+    this.communicationService.getOwnerIdsByClinicId(clinicId).subscribe((res: string[]) => {
+      this.ownerIds = res;
+    });
+  }
 
   private getCurrentFormattedDate(): string {
     let today = new Date();
@@ -47,10 +65,10 @@ export class AnimalInserterComponent {
     this.communicationService.insertAnimal(animal).subscribe((res: number) => {
         if (res > 0) {
             this.communicationService.filter("update");
+            location.reload();
         }
         this.duplicateError = (res === -1);
     });
-    location.reload();
   }
 
 }

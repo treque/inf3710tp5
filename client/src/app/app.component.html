@@ -2,12 +2,30 @@
 
 
 
-<nav class="navbar navbar-dark bg-dark mb-5">
-    <a class="navbar-brand title" href="/">INF3710-TP5</a>
+<nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top">
+    <a class="navbar-brand title" href="/">Veto Sans Frontieres</a>
     <div class="navbar-expand mr-auto">
       <div class="navbar-nav">
-        <a class="nav-item nav-link active" routerLink="/animalUpdater">Supprimer ou modifier un animal</a>
-        <a class="nav-item nav-link active" routerLink="/animalInserter">Enregistrer un animal</a>
+          <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Services
+              </a>
+              <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                  <a class="dropdown-item" routerLink="/animalInserter">Enregistrer un animal</a>
+                  <a class="dropdown-item" routerLink="/animalUpdater">Supprimer ou modifier un animal</a>
+              </div>
+            </li>
+        <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+              Consulter
+            </a>
+            <div class="dropdown-menu" aria-labelledby="navbarDropdown">
+                <a class="dropdown-item" routerLink="/payment">Consulter la facture des traitements d'un animal</a>
+                <a class="dropdown-item" routerLink="/treatment">Consulter les traitements d'un animal</a>
+              <div class="dropdown-divider"></div>
+              <a class="dropdown-item" routerLink="/search">Consulter les informations sur un animal</a>
+            </div>
+          </li>
       </div>
     </div>
   </nav>
@@ -18,4 +36,3 @@
 </div>
 
 <router-outlet></router-outlet>
-

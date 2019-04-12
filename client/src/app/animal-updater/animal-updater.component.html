@@ -1,44 +1,43 @@
 <div id="hotel" style="text-align: left">
-    <h1> Animals</h1>
-    <div id="error" class="alert alert-danger" role="alert" *ngIf="duplicateError">
-      Insertion sur une cle primaire qui existe deja
-    </div>
+    <h1>Supprimer ou modifier un animal</h1>
       <ul style="list-style: none;">
 
-        clinique id: <li><select id="inputState" class="form-control col-md-4" #cliniqueId  [(ngModel)]="selectedClinic" (change)="updateOwners()">
+        Identifiant de la clinique: <li><select id="inputState" class="form-control col-md-4" #cliniqueId  [(ngModel)]="selectedClinic" (change)="updateOwners()">
           <option selected>Choisir...</option>
           <option *ngFor = "let clinicId of clinicIds" value="{{ clinicId }}">{{ clinicId }}</option>
         </select></li>
 
-        proprietaire id: <li><select id="inputState" class="form-control col-md-4" #propId [(ngModel)]="selectedOwner" (change)="updateAnimals()" [disabled] = "isOwnersDisabled">
+        Identifiant du proprietaire: <li><select id="inputState" class="form-control col-md-4" #propId [(ngModel)]="selectedOwner" (change)="updateAnimals()" [disabled] = "isOwnersDisabled">
           <option selected>Choisir...</option>
           <option *ngFor = "let ownerId of ownerIds" value = "{{ ownerId }}">{{ ownerId }}</option>
         </select></li>
 
-        animal id : <li><select id="inputState" class="form-control col-md-4" #animId [(ngModel)]="selectedAnimal" [disabled] = "isAnimalsDisabled" (change)= "updateFields()">
+        Identifiant de l'animal: <li><select id="inputState" class="form-control col-md-4" #animId [(ngModel)]="selectedAnimal" [disabled] = "isAnimalsDisabled" (change)= "updateFields()">
           <option selected>Choisir...</option>
           <option *ngFor = "let animalId of animalIds" value = "{{ animalId }}">{{ animalId }}</option>
         </select></li>
 
-        nom : <li><input class="form-control col-md-4" #nom></li>
+        Nom de l'animal: <li><input class="form-control col-md-4" #nom></li>
 
-        espece : <li><input class="form-control col-md-4" #espece></li>
+        Espèce: <li><input class="form-control col-md-4" #espece></li>
 
-        etat : <li><select id="inputState" class="form-control col-md-4" #etat>
+        État: <li><select id="inputState" class="form-control col-md-4" #etat>
           <option selected></option>
           <option>VIVANT</option>
           <option>DECEDE</option>
         </select></li>
 
-        description : <li><input class="form-control col-md-4" #desc></li>
+        Description: <li><input class="form-control col-md-4" #desc></li>
 
-        date de naissance (YYYY-MM-DD) : <li>
+        Date de naissance: <li>
             <input class="form-control col-md-4" placeholder="yyyy-mm-dd" #ddn (click)="d.toggle()"
             [(ngModel)]="model" ngbDatepicker [dayTemplate]="customDay" [markDisabled]="isDisabled" #d="ngbDatepicker">
         </li>
-        date d'inscription (YYYY-MM-DD) : <li><input class="form-control col-md-4" #di disabled = "disabled"></li>
+        Date d'inscription: <li><input class="form-control col-md-4" #di disabled = "disabled"></li>
+      <br>
       <li><button type="button" class="btn btn-primary" (click)="updateAnimal(nom.value, espece.value, etat.value, desc.value, ddn.value, di.value)">Confirmer les modifications</button></li>
-      <li><button type="button" class="btn btn-primary" style="background-color: red" (click)="deleteAnimalById(animId.value, propId.value, cliniqueId.value)">Supprimer l'animal</button></li>
+      <br>
+      <li><button type="button" class="btn btn-danger" (click)="deleteAnimalById(animId.value, propId.value, cliniqueId.value)">Supprimer l'animal</button></li>
 
     </ul>
 
