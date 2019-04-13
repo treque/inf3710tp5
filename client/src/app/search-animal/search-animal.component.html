@@ -1,5 +1,5 @@
 <form #f="ngForm" (ngSubmit)="searchAnimal(input.value)" novalidate>
-    <input [(ngModel)]="username" name="Username" ngModel required #first="ngModel" placeholder="Recherche..." autocomplete="off" #input><br/>
+    <input id="search-bar" [(ngModel)]="username" name="Username" ngModel required #first="ngModel" placeholder="Recherche..." autocomplete="off" #input><br/>
     <button class="button"><span>Recherche </span></button>
   </form>
 
