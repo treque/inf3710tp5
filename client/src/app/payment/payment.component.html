@@ -41,34 +41,37 @@
       </div>
     </div>
     <div class = "col">
+      <div *ngIf="!_noResults">
+
         <table class = "table table-striped">
-            <thead class = "thead-dark">
-                <th> Type de traitement</th>
-                <th> Description </th>
-                <th> Qté</th>
-                <th> Prix </th>
-                <th> Coût </th>
-        
-            </thead>
-            <tbody>
-                <tr *ngFor="let treatment of _treatments">
-                        <td> {{treatment.typeid}}</td>
-                        <td> {{treatment.descr}}</td>
-                        <td> {{treatment.qte}}</td>
-                        <td> {{treatment.prix}}</td>
-                        <td> {{treatment.cout}}</td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <th></th>
-                <th></th>
-                <th></th>
-                <th> Total: </th>
-                <th> {{_total}} </th>
-            </tfoot>
+          <thead class = "thead-dark">
+            <th> Type de traitement</th>
+            <th> Description </th>
+            <th> Qté</th>
+            <th> Prix </th>
+            <th> Coût </th>
+            
+          </thead>
+          <tbody>
+            <tr *ngFor="let treatment of _treatments">
+              <td> {{treatment.typeid}}</td>
+              <td> {{treatment.descr}}</td>
+              <td> {{treatment.qte}}</td>
+              <td> {{treatment.prix}}</td>
+              <td> {{treatment.cout}}</td>
+            </tr>
+          </tbody>
+          <tfoot>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th> Total: </th>
+            <th> {{_total}} </th>
+          </tfoot>
         </table>
-        
-    </div>
+      </div>
+      <div *ngIf="_noResults" style="margin-top: 50px; font-size: 30px;"> Aucune facture </div>  
+      </div>
   </div>
 </div>
       

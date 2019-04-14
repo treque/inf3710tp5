@@ -21,6 +21,7 @@ export class PaymentComponent {
   public _isAnimalsDisabled: boolean = true;
   public _treatments: Treatment[];
   public _total: number;
+  public _noResults: boolean = false;
 
   public constructor(private paymentService: PaymentService,
                      private communicationService: CommunicationService) {
@@ -40,9 +41,6 @@ export class PaymentComponent {
   public getBill(animalId: string, ownerId: string, clinicId: string): void {
     this._treatments = [];
     this.paymentService.getBill(animalId, ownerId, clinicId).toPromise().then((res: Treatment[]) => {
-      console.log(res);
-      //this._treatments = res;
-
       for (const treatment of res) {
         this._treatments.push({typeid: treatment.typeid,
                                qte: treatment.qte,
@@ -52,12 +50,15 @@ export class PaymentComponent {
                                prix: treatment.prix,
                                cout: treatment.cout
                               });
-      }
+    }
+    this._noResults = this._treatments.length === 0 ? true : false;
     });
 
     this.paymentService.getTotal(animalId, ownerId, clinicId).toPromise().then((res: Total[]) => {
       this._total = res[0].total;
     });
+
+
   }
 
   public updateOwners(): void {
