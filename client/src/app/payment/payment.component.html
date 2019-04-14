@@ -1,53 +1,79 @@
-<div class="jumbotron">
-  <div id="traitement" style="text-align: center;">
-    <h1 class="display-4">Facture totale d'un animal</h1>
-    <div id="error" class="alert alert-danger" role="alert" *ngIf="duplicateError">
-            NOPE
+<div class = "container">
+  <div class = "row">
+    <div class = "col">
+      <div class="jumbotron">
+          <h1 class="display-4">Facture totale d'un animal</h1>
+          <div id="error" class="alert alert-danger" role="alert" *ngIf="duplicateError">
+              NOPE
           </div>
-            <ul style="list-style: none;">
-                clinique id: <li><select id="inputState" class="form-control col-md-4" #clinique  [(ngModel)]="_selectedClinic" (change)="updateOwners()" style="margin-left: 33%;">
-                <option selected>Choisir...</option>
-                <option *ngFor = "let clinicId of _clinicIds" value="{{ clinicId }}">{{ clinicId }}</option>
-              </select></li>
+          <p class="lead">Ici, vous pouvez consulter la facture totale d'un animal d'un propriétaire existant.</p>
+          <hr class="my-4">
+        
+          <div class="row">
+        
+              <div class="col">
+                Identifiant de la clinique: <select id="inputState" class="form-control" #clinique  [(ngModel)]="_selectedClinic" (change)="updateOwners()">
+                    <option selected>Choisir...</option>
+                    <option *ngFor = "let clinicId of _clinicIds" value="{{ clinicId }}">{{ clinicId }}</option>
+                  </select>
+              </div>
+        
+              <div class="col">
+                Identifiant du proprietaire: <select id="inputState" class="form-control" #propId [(ngModel)]="_selectedOwner" (change)="updateAnimals()" [disabled] = "_isOwnersDisabled">
+                    <option selected>Choisir...</option>
+                    <option *ngFor = "let ownerId of _ownerIds" value = "{{ ownerId }}">{{ ownerId }}</option>
+                  </select>
+              </div>
+        
+              <div class="col">
+                Identifiant de l'animal: <select id="inputState" class="form-control" #animId [(ngModel)]="_selectedAnimal" [disabled] = "_isAnimalsDisabled" (change)= "updateFields()">
+                    <option selected>Choisir...</option>
+                    <option *ngFor = "let animalId of _animalIds" value = "{{ animalId }}">{{ animalId }}</option>
+                  </select>
+              </div>
+        
+            </div>
+            <br>
+            <div class ="col">
+              <button type="button" class="btn btn-primary" (click)="getBill(_selectedAnimal, _selectedOwner, _selectedClinic)"> Recherche </button>
+            </div>
       
-              proprietaire id: <li><select id="inputState" class="form-control col-md-4" #propId [(ngModel)]="_selectedOwner" (change)="updateAnimals()" [disabled] = "_isOwnersDisabled" style="margin-left: 33%;">
-                <option selected>Choisir...</option>
-                <option *ngFor = "let ownerId of _ownerIds" value = "{{ ownerId }}">{{ ownerId }}</option>
-              </select></li>
-      
-              animal id : <li><select id="inputState" class="form-control col-md-4" #animId [(ngModel)]="_selectedAnimal" [disabled] = "_isAnimalsDisabled" (change)= "updateFields()" style="margin-left: 33%;">
-                <option selected>Choisir...</option>
-                <option *ngFor = "let animalId of _animalIds" value = "{{ animalId }}">{{ animalId }}</option>
-              </select></li>
-              <li><button type="button" class="btn btn-primary" (click)="getBill(_selectedAnimal, _selectedOwner, _selectedClinic)"> Recherche </button></li>
-            </ul>
+      </div>
+    </div>
+    <div class = "col">
+        <table class = "table table-striped">
+            <thead class = "thead-dark">
+                <th> Type de traitement</th>
+                <th> Description </th>
+                <th> Qté</th>
+                <th> Prix </th>
+                <th> Coût </th>
+        
+            </thead>
+            <tbody>
+                <tr *ngFor="let treatment of _treatments">
+                        <td> {{treatment.typeid}}</td>
+                        <td> {{treatment.descr}}</td>
+                        <td> {{treatment.qte}}</td>
+                        <td> {{treatment.prix}}</td>
+                        <td> {{treatment.cout}}</td>
+                </tr>
+            </tbody>
+            <tfoot>
+                <th></th>
+                <th></th>
+                <th></th>
+                <th> Total: </th>
+                <th> {{_total}} </th>
+            </tfoot>
+        </table>
+        
+    </div>
   </div>
 </div>
+      
+      
     
-<table class = "table table-striped">
-    <thead class = "thead-dark">
-        <th> Type de traitement</th>
-        <th> Description </th>
-        <th> Qté</th>
-        <th> Prix </th>
-        <th> Coût </th>
+        
 
-    </thead>
-    <tbody>
-        <tr *ngFor="let treatment of _treatments">
-                <td> {{treatment.typeid}}</td>
-                <td> {{treatment.descr}}</td>
-                <td> {{treatment.qte}}</td>
-                <td> {{treatment.prix}}</td>
-                <td> {{treatment.cout}}</td>
-        </tr>
-    </tbody>
-    <tfoot>
-        <th></th>
-        <th></th>
-        <th></th>
-        <th> Total: </th>
-        <th> {{_total}} </th>
-    </tfoot>
-</table>
-
+  

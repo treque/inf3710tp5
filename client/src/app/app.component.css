@@ -27,3 +27,7 @@
 .dropdown-item {
     font-family: 'Merriweather Sans', sans-serif;
 }
+
+.dropdown:hover>.dropdown-menu {
+    display: block;
+}

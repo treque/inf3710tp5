@@ -1,34 +1,5 @@
-export const data: string = /*`SET search_path = hotelDB;
-
-INSERT INTO HOTELDB.Hotel VALUES ('H111', 'Grosvenor Hotel', 'London');
-INSERT INTO HOTELDB.Hotel VALUES ('H112', 'Kingston Hotel', 'Kingston');
-INSERT INTO HOTELDB.Hotel VALUES ('H113', 'Hotel des pas perdus', 'Montreal');
-
-INSERT INTO HOTELDB.Room VALUES ('1', 'H111', 'S', 72.00);
-INSERT INTO HOTELDB.Room VALUES ('2', 'H111', 'S', 100.00);
-INSERT INTO HOTELDB.Room VALUES ('3', 'H111', 'D', 200.00);
-INSERT INTO HOTELDB.Room VALUES ('4', 'H111', 'D', 250.00);
-INSERT INTO HOTELDB.Room VALUES ('1', 'H112', 'D', 450.00);
-INSERT INTO HOTELDB.Room VALUES ('2', 'H112', 'D', 450.00);
-INSERT INTO HOTELDB.Room VALUES ('3', 'H112', 'D', 450.00);
-
-INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender, guestCity) VALUES ('G111', '123', 'John Smith', 'M', 'London');
-INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender,  guestCity)VALUES ('G112', '213', 'Alex L', 'M', 'Kingston');
-INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender,  guestCity)VALUES ('G113', '233', 'Idris S',  'M', 'Montreal');
-INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender, guestCity) VALUES ('G114', '312', 'Guillaume D', 'M',  'Quebec');
-INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender, guestCity)VALUES ('G115', '122', 'Katrine S.',  'F', 'Kingston');
-INSERT INTO HOTELDB.Guest (guestNo, nas, guestName, gender, guestCity)VALUES ('G116', '111', 'Simon D', 'M',  'Kingston');
-
-INSERT INTO HOTELDB.Booking VALUES ('H111', 'G111', DATE'2019-04-01', DATE'2019-04-04', '1');
-INSERT INTO HOTELDB.Booking VALUES ('H111', 'G114', DATE'2019-04-01', DATE'2019-04-05', '3');
-INSERT INTO HOTELDB.Booking VALUES ('H111', 'G116', DATE'2019-04-03', DATE'2019-04-06', '4');
-INSERT INTO HOTELDB.Booking (hotelNo, guestNo, dateFrom, roomNo) VALUES ('H112', 'G115', DATE'2019-05-03',  '1');
-
-UPDATE HOTELDB.Guest set guestName = 'Alexandra L.' where guestNo='G112';
-;`;*/
+export const data: string = 
 `
-SET search_path = vetoSansFrontieres;
-
 INSERT INTO VSF.Clinique (cliniqueId, nom, adr, telNo, faxNo) VALUES ('C1', 'Clinique du Soleil', '6768 boul. Saint Laurent, Montreal, Quebec, H2S 3C7', '5149961251', '5149971252');
 INSERT INTO VSF.Clinique (cliniqueId, nom, adr, telNo, faxNo) VALUES ('C2', 'Clinique du Ciel', '3269 rue Fenelon, Montreal, Quebec, H2A 1M7', '5149998898', '5149998888');
 INSERT INTO VSF.Clinique (cliniqueId, nom, adr, telNo, faxNo) VALUES ('C3', 'Clinique de la Lune', '1725 rue Jean Talon E, Montreal, Quebec, H2E 1T3', '5148820098', '5143749999');
@@ -128,12 +99,14 @@ INSERT INTO VSF.TypeTraitement (typeId, descr, cout) VALUES ('T117', 'Abonnement
 INSERT INTO VSF.Examen (examId, dateExam, heure, nomVet, descr, animId, propId, cliniqueId) VALUES ('X1', '2019-01-09', '13:00:00', 'Annie Chen', 'animal en manque daffection', 'A1', 'P1', 'C1');
 INSERT INTO VSF.Traitement (traitId, examId, typeId, cliniqueId, animId, propId, qte, dateDebut, dateFin) VALUES ('TR1', 'X1', 'T120', 'C1', 'A1', 'P1', 1, '2019-01-09', '2019-01-10');
 INSERT INTO VSF.Traitement (traitId, examId, typeId, cliniqueId, animId, propId, qte, dateDebut, dateFin) VALUES ('TR2', 'X1', 'T000', 'C1', 'A1', 'P1', 1, '2019-01-09', '2019-01-09');
+INSERT INTO VSF.Examen (examId, dateExam, heure, nomVet, descr, animId, propId, cliniqueId) VALUES ('X2', '2019-03-09', '14:00:00', 'Annie Chen', 'animal en manque daffection (encore)', 'A1', 'P1', 'C1');
+INSERT INTO VSF.Traitement (traitId, examId, typeId, cliniqueId, animId, propId, qte, dateDebut, dateFin) VALUES ('TR1', 'X2', 'T000', 'C1', 'A1', 'P1', 1, '2019-03-09', '2019-03-09');
 
 -- faire un chien vaccine contre la gripppe ou le owner a un chat
-INSERT INTO VSF.Examen (examId, dateExam, heure, nomVet, descr, animId, propId, cliniqueId) VALUES ('X2', '2019-01-12', '14:00:00', 'Annie Chen', 'se mouche avec du papier brun', 'A1', 'P3', 'C1');
-INSERT INTO VSF.Traitement (traitId, examId, typeId, cliniqueId, animId, propId, qte, dateDebut, dateFin) VALUES ('TR1', 'X2', 'T112', 'C1', 'A1', 'P3', 1, '2019-04-10', '2019-04-20');
-INSERT INTO VSF.Traitement (traitId, examId, typeId, cliniqueId, animId, propId, qte, dateDebut, dateFin) VALUES ('TR2', 'X2', 'T134', 'C1', 'A1', 'P3', 2, '2019-04-10', '2019-04-25');
-INSERT INTO VSF.Traitement (traitId, examId, typeId, cliniqueId, animId, propId, qte, dateDebut, dateFin) VALUES ('TR3', 'X2', 'T000', 'C1', 'A1', 'P3', 1, '2019-01-12', '2019-01-12');
+INSERT INTO VSF.Examen (examId, dateExam, heure, nomVet, descr, animId, propId, cliniqueId) VALUES ('X1', '2019-01-12', '14:00:00', 'Annie Chen', 'se mouche avec du papier brun', 'A1', 'P3', 'C1');
+INSERT INTO VSF.Traitement (traitId, examId, typeId, cliniqueId, animId, propId, qte, dateDebut, dateFin) VALUES ('TR1', 'X1', 'T112', 'C1', 'A1', 'P3', 1, '2019-04-10', '2019-04-20');
+INSERT INTO VSF.Traitement (traitId, examId, typeId, cliniqueId, animId, propId, qte, dateDebut, dateFin) VALUES ('TR2', 'X1', 'T134', 'C1', 'A1', 'P3', 2, '2019-04-10', '2019-04-25');
+INSERT INTO VSF.Traitement (traitId, examId, typeId, cliniqueId, animId, propId, qte, dateDebut, dateFin) VALUES ('TR3', 'X1', 'T000', 'C1', 'A1', 'P3', 1, '2019-01-12', '2019-01-12');
 
 
 -- DANS LA CLINIQUE 2
