@@ -8,8 +8,6 @@ import { AnimalUpdaterComponent } from "./animal-updater/animal-updater.componen
 import { AppRoutingModule } from "./app-routing.module";
 import { AppComponent } from "./app.component";
 import { CommunicationService } from "./communication.service";
-import { HotelComponent } from "./hotel/hotel.component";
-import { RoomComponent } from "./room/room.component";
 import { SearchAnimalComponent } from "./search-animal/search-animal.component";
 import { TreatmentComponent } from "./treatment/treatment.component";
 import { PaymentComponent } from './payment/payment.component';
@@ -18,8 +16,6 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 @NgModule({
   declarations: [
     AppComponent,
-    RoomComponent,
-    HotelComponent,
     AnimalInserterComponent,
     TreatmentComponent,
     SearchAnimalComponent,
