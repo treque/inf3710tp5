@@ -1,11 +1,10 @@
 import { HttpClient } from "@angular/common/http";
 import { Injectable } from "@angular/core";
-import {Hotel} from "../../../common/tables/Hotel";
 // tslint:disable-next-line:ordered-imports
 import { of, Observable, concat, Subject } from "rxjs";
 import { catchError } from "rxjs/operators";
-import { Room } from "../../../common/tables/Room";
 import { Animal } from "../../../common/tables/Animal";
+import { Exam } from "../../../common/tables/exam";
 
 @Injectable()
 export class CommunicationService {
@@ -23,18 +22,9 @@ export class CommunicationService {
        this._listners.next(filterBy);
     }
 
-
-    public getHotels(): Observable<any[]> {
-
-        return this.http.get<Hotel[]>(this.BASE_URL + "/hotel").pipe(
-            catchError(this.handleError<Hotel[]>("getHotels")),
-        );
-    }
-
-    public getHotelPKs(): Observable<string[]> {
-
-        return this.http.get<string[]>(this.BASE_URL + "/hotel/hotelNo").pipe(
-            catchError(this.handleError<string[]>("getHotelPKs")),
+    public getExamsById(animalId: string, ownerId: string, clinicId: string): Observable<Exam[]> {
+        return this.http.post<Exam[]>(this.BASE_URL + "/exam", {animId: animalId, ownerId: ownerId, clinicId: clinicId}).pipe(
+            catchError(this.handleError<Exam[]>("getExamsById")),
         );
     }
 
@@ -85,12 +75,6 @@ export class CommunicationService {
     public updateAnimal(animal: Animal){
         return this.http.post<number>(this.BASE_URL + "/animal/update", animal).pipe(
             catchError(this.handleError<number>("updateAnimal")),
-        );
-    }
-
-    public insertRoom(room: Room): Observable<number> {
-        return this.http.post<number>(this.BASE_URL + "/rooms/insert", room).pipe(
-            catchError(this.handleError<number>("inserHotel")),
         );
     }
 

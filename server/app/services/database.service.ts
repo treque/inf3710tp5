@@ -36,38 +36,7 @@ export class DatabaseService {
 
         return this.pool.query(data);
     }
-/*
-    public getAllFromTable(tableName: string): Promise<pg.QueryResult> {
-        //this.pool.connect();
 
-        return this.pool.query(`SELECT * FROM HOTELDB.${tableName};`);
-    }
-
-    // HOTEL
-    public getHotels(): Promise<pg.QueryResult> {
-        //this.pool.connect();
-
-        return this.pool.query('SELECT * FROM HOTELDB.Hotel;');
-    }
-
-    public getHotelNo(): Promise<pg.QueryResult> {
-        //this.pool.connect();
-
-        return this.pool.query('SELECT hotelNo FROM HOTELDB.Hotel;');
-    }
-
-    public createHotel(hotelNo: string, hotelName: string, city: string): Promise<pg.QueryResult> {
-        //this.pool.connect();
-        const values: string[] = [
-            hotelNo,
-            hotelName,
-            city
-        ];
-        const queryText: string = `INSERT INTO HOTELDB.Hotel VALUES($1, $2, $3);`;
-
-        return this.pool.query(queryText, values);
-    }
-*/
     public createAnimal(animId: string, nom: string, etat: string, espece: string, descr: string,
         dateNaissance: string, dateIns: string, propId: string, cliniqueId: string): Promise<pg.QueryResult> {
         this.pool.connect();
@@ -298,5 +267,18 @@ export class DatabaseService {
         const queryText: string = `SELECT * FROM VSF.Animal WHERE lower(nom) LIKE lower($1);`;
 
         return this.pool.query(queryText, ['%' + name + '%']);
+    }
+
+    public getExams(animalId: string, ownerId: string, clinicId: string): Promise<pg.QueryResult> {
+        const queryText: string = `SELECT VSF.Examen.* FROM VSF.Examen INNER JOIN VSF.Animal ` +
+                                  `USING(animId, propId, cliniqueId) WHERE animId = $1` +
+                                  'AND propId = $2 AND cliniqueId = $3;';
+        const values: string[] = [
+            animalId,
+            ownerId,
+            clinicId
+        ];
+
+        return this.pool.query(queryText, values);
     }
 }

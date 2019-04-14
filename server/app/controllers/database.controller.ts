@@ -158,6 +158,14 @@ export class DatabaseController {
             });
         });
 
+        router.post("/exam", (req: Request, res: Response, next: NextFunction) => {
+            this.databaseService.getExams(req.body.animId, req.body.ownerId, req.body.clinicId)
+            .then((result: pg.QueryResult) => {
+                res.json(result.rows);
+            }).catch((e: Error) => {
+                console.error(e.stack);
+            });
+        });
         return router;
     }
 }
