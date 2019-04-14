@@ -19,6 +19,7 @@ export class TreatmentComponent implements OnInit {
   public _isOwnersDisabled: boolean = true;
   public _isAnimalsDisabled: boolean = true;
   private _treatments: Treatment[];
+  public _noResults: boolean = false;
 
   public get treatment(): Treatment[] {
     return this._treatments;
@@ -49,6 +50,7 @@ export class TreatmentComponent implements OnInit {
                                cout: treatment.cout
                               });
       }
+      this._noResults = this._treatments.length === 0 ? true : false;
     });
   }
 

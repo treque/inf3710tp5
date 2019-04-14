@@ -41,25 +41,28 @@
         </div>
       </div>
       <div class = "col">
+        <div *ngIf ="!_noResults">
           <table class = "table table-striped">
-              <thead class = "thead-dark">
+            <thead class = "thead-dark">
                   <th> Type de traitement</th>
                   <th> Qté</th>
                   <th> Date de début</th>
                   <th> Date de fin</th>
                   <th> Description </th>
-          
-              </thead>
-              <tbody>
+                  
+                </thead>
+                <tbody>
                   <tr *ngFor="let treatment of _treatments">
-                          <td> {{treatment.typeid}}</td>
+                    <td> {{treatment.typeid}}</td>
                           <td> {{treatment.qte}}</td>
                           <td> {{treatment.datedebut}}</td>
                           <td> {{treatment.datefin}}</td>
                           <td> {{treatment.descr}}</td>
                   </tr>
-              </tbody>
-          </table>
-      </div>
+                </tbody>
+              </table>
+            </div>
+            <div *ngIf="_noResults" style="margin-top: 50px; font-size: 30px;"> Aucun traitement </div>
+          </div>
     </div>
   </div>
