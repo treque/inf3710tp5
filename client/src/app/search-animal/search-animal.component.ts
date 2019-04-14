@@ -69,8 +69,6 @@ export class SearchAnimalComponent {
                           nomvet: exam.nomvet,
                           descr: exam.descr});
       }
-
-      console.log(this._exams);
     });
   // @ts-ignore
     document.getElementById("infos").style.display = "block";
